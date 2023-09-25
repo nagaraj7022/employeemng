@@ -5,6 +5,14 @@ const { EmployeeModel } = require('../model/employee.model');
 const { auth } = require('../middleware/auth');
 
 const empRouter = Router()
+
+
+// employees all routes are protected. (need login /  jwt token)
+// empRouter.use(auth)
+
+
+// add employees
+
 empRouter.post('/', async (req, res) => {
     try {
         console.log(req.body);
@@ -30,7 +38,11 @@ empRouter.post('/', async (req, res) => {
 })
 
 
+
+// get all employees
+
 empRouter.get('/', async (req, res) => {
+
     let { FirstName, LastName, Department, page, limit, sortbysalary } = req.query;
 
     try {
@@ -76,6 +88,9 @@ empRouter.get('/', async (req, res) => {
     }
 })
 
+
+// get one employees by id
+
 empRouter.get('/:id', async (req, res) => {
     try {
 
@@ -96,6 +111,10 @@ empRouter.get('/:id', async (req, res) => {
 
     }
 })
+
+
+
+// update one employees by id
 
 const editEmployee = async (req, res) => {
 
@@ -127,6 +146,12 @@ empRouter.put('/:id', editEmployee)
 
 empRouter.patch('/:id', editEmployee)
 
+
+
+
+
+
+// delete one employees by id
 
 empRouter.delete('/:id', async (req, res) => {
     try {
